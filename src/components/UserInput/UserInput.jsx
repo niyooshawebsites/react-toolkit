@@ -1,5 +1,5 @@
 import Button from "../Button/Button";
-import { counterActions } from "../../store/Store";
+import { counterSliceActions } from "../../store/slices/counterSlice";
 import { useDispatch } from "react-redux";
 import { useRef } from "react";
 
@@ -8,24 +8,27 @@ const UserInput = () => {
   const inputRef = useRef();
 
   const handleInc = () => {
-    dispatch(counterActions.inc());
+    dispatch(counterSliceActions.inc());
   };
 
   const handleDec = () => {
-    dispatch(counterActions.dec());
+    dispatch(counterSliceActions.dec());
   };
 
   const handleReset = () => {
-    dispatch(counterActions.reset());
+    dispatch(counterSliceActions.reset());
   };
 
   const handleAdd = () => {
-    dispatch(counterActions.add({ num: inputRef.current.value }));
+    dispatch(counterSliceActions.add({ num: inputRef.current.value }));
+    inputRef.current.value = "";
   };
 
   const handleSub = () => {
-    dispatch(counterActions.sub({ num: inputRef.current.value }));
+    dispatch(counterSliceActions.sub({ num: inputRef.current.value }));
+    inputRef.current.value = "";
   };
+
   return (
     <>
       <Button type={"Dec"} color={"primary"} respond={handleDec} />
